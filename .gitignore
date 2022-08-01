@@ -1,0 +1,5 @@
+.idea
+.git
+.env
+__pycache__
+test.py

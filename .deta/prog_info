@@ -1,0 +1,1 @@
+{"id":"de84de27-a7f9-4a57-b79b-ff3144e4b15d","space":22540,"runtime":"python3.9","name":"mpesa","path":"d8bipm","project":"c04i5lu7","account":"144798365827","region":"ap-southeast-1","deps":["fastapi==0.76.0","redmail==0.4.0","sqlalchemy==1.4.36","python-dotenv==0.20.0"],"envs":null,"public":true,"log_level":"debug","cron":""}
