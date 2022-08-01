@@ -1,5 +1,6 @@
 .idea
 .git
 .env
+.deta
 __pycache__
 test.py
