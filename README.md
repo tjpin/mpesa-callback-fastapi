@@ -1,6 +1,6 @@
 ## mpesa-callback-fastapi
 
-! (https://developer.safaricom.co.ke/img/logo.png)
+!(https://developer.safaricom.co.ke/img/logo.png)
 
 ### This is callback api to handle [Safaricom mpesa api](https://developer.safaricom.co.ke//) callback data.
 ### It's simple and direct.
