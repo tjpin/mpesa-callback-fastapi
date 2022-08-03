@@ -1,31 +1,23 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from hashlib import sha256
-from typing import Dict
 
 from utils import models, schemas
 
 # *************************** USERS **************************************
+# ************************************************************************
 
 
 def create_user(db: Session, user: schemas.User):
-    dbuser = models.UserModel(
-        first_name=user.first_name,
-        last_name=user.last_name,
-        phone_number=user.phone_number,
-        email=user.email,
-        password=sha256(user.password.encode(encoding='utf-8')).hexdigest()
-    )
     new_user = models.UserModel(**user.dict())
     user_indb = db.query(models.UserModel).filter(
-        models.UserModel.phone_number == dbuser.phone_number).first()
+        models.UserModel.phone_number == new_user.phone_number).first()
     if user_indb:
         raise HTTPException(detail="User already registered.",
                             status_code=status.HTTP_409_CONFLICT)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return dbuser
+    return new_user
 
 
 def get_all_users(db: Session, skip: int = 0):
@@ -41,6 +33,7 @@ def get_user_by_phone(db: Session, phone: int):
 
 
 # *************************** Transactions **************************************
+# *******************************************************************************
 def get_transaction_by_id(db: Session, transaction_id: int):
     return db.query(models.TransactionModel).filter(models.TransactionModel.id == transaction_id).first()
 

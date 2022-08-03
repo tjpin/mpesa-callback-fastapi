@@ -1,1 +1,44 @@
-GET https://d8bipm.deta.dev/api/tbuy/users/key.mpesakenya
+# POST http://127.0.0.1:8000/api/tpay/transactions/key.mpesakenya
+POST http://127.0.0.1:8000/api/tbuy/users/key.mpesakenya
+Content-Type: application/json
+
+{
+    "first_name": "testName",
+    "last_name": "LastName",
+    "phone_number": 722818567,
+    "email": "testmail.com",
+    "password": "password"
+}
+
+# {
+#     "Body": {
+#         "stkCallback": {
+#             "MerchantRequestID": "29115-34620561-1",
+#             "CheckoutRequestID": "ws_CO_191220191020363925",
+#             "ResultCode": 0,
+#             "ResultDesc": "The service request is processed successfully.",
+#             "CallbackMetadata": {
+#                 "Item": [{
+#                     "Name": "Amount",
+#                     "Value": 1.00
+#                 },
+#                     {
+#                     "Name": "MpesaReceiptNumber",
+#                     "Value": "NLJ7RT61SV"
+#                 },
+#                 {
+#                     "Balance": "Balance",
+#                     "Value": ""
+#                 },
+#                 {
+#                     "Name": "TransactionDate",
+#                     "Value": 20191219102115
+#                 },
+#                     {
+#                     "Name": "PhoneNumber",
+#                     "Value": 254722003366
+#                 }]
+#             }
+#         }
+#     }
+# }

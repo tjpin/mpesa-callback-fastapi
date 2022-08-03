@@ -25,21 +25,20 @@ def get_db():
         db.close
 
 
-@app.get('/{key}', status_code=status.HTTP_200_OK)
-def home(key: str):
-    if not key:
-        return "key is required"
-    if key != mpesa_key:
-        return {"Status": "Invalid Key."}
+@app.get('/', status_code=status.HTTP_200_OK)
+def home():
     return {'Code': status.HTTP_200_OK, 'Status': 'Server is Up and Running...'}
 
 
-@app.post('/api/tbuy/users/', status_code=status.HTTP_201_CREATED)
-async def add_user(user: User, db: Session = Depends(get_db)):
-    try:
-        return crud.create_user(db=db, user=user)
-    except:
-        return "Error creating user"
+@app.post('/api/tbuy/users/{key}', status_code=status.HTTP_201_CREATED)
+async def add_user(key: str, user: User, db: Session = Depends(get_db)):
+    if not key:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Key is required!")
+    if key != mpesa_key:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Key!")
+    return crud.create_user(db=db, user=user)
 
 
 @app.get('/api/tbuy/users/{key}', status_code=status.HTTP_200_OK)
